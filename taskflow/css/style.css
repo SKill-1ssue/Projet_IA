@@ -1,0 +1,1168 @@
+/* ============================================================
+   🌸 TASKFLOW — THÈME SAKURA (Cerisier du Japon)
+   Fond avec branches de cerisier + pétales qui tombent
+   US13 : Thème clair / sombre
+   ============================================================ */
+
+/* ===== GOOGLE FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ===== VARIABLES — THÈME CLAIR (défaut) ===== */
+:root {
+    /* Couleurs Sakura */
+    --sakura-100: #fdf2f8;
+    --sakura-200: #fce7f3;
+    --sakura-300: #fbcfe8;
+    --sakura-400: #f9a8d4;
+    --sakura-500: #ec4899;
+    --sakura-600: #db2777;
+    --sakura-700: #be185d;
+
+    /* Ciel (bleu comme la photo) */
+    --sky-top: #5cc8ea;
+    --sky-mid: #87ceeb;
+    --sky-bottom: #c8e6f5;
+
+    /* Fond & surfaces */
+    --bg-body: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 30%, var(--sky-bottom) 60%, #fce7f3 85%, #fdf2f8 100%);
+    --bg-container: rgba(255, 255, 255, 0.88);
+    --bg-card: #ffffff;
+    --bg-input: #ffffff;
+    --bg-input-focus: #fff5f7;
+
+    /* Texte */
+    --text-primary: #4a2040;
+    --text-secondary: #9d5c8a;
+    --text-muted: #c9a0b8;
+    --text-on-accent: #ffffff;
+
+    /* Bordures & ombres */
+    --border-color: #fbcfe8;
+    --border-input: #f9a8d4;
+    --shadow-sm: 0 2px 8px rgba(236, 72, 153, 0.08);
+    --shadow-md: 0 4px 20px rgba(236, 72, 153, 0.12);
+    --shadow-lg: 0 8px 40px rgba(236, 72, 153, 0.16);
+    --shadow-glow: 0 0 20px rgba(236, 72, 153, 0.2);
+
+    /* Boutons */
+    --btn-primary-bg: linear-gradient(135deg, #f472b6, #ec4899, #db2777);
+    --btn-primary-hover: linear-gradient(135deg, #ec4899, #db2777, #be185d);
+    --btn-edit-bg: linear-gradient(135deg, #a78bfa, #8b5cf6);
+    --btn-edit-hover: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    --btn-delete-bg: linear-gradient(135deg, #fb7185, #f43f5e);
+    --btn-delete-hover: linear-gradient(135deg, #f43f5e, #e11d48);
+    --btn-save-bg: linear-gradient(135deg, #34d399, #10b981);
+    --btn-save-hover: linear-gradient(135deg, #10b981, #059669);
+    --btn-cancel-bg: linear-gradient(135deg, #94a3b8, #64748b);
+
+    /* Progression */
+    --progress-bg: #fce7f3;
+    --progress-fill: linear-gradient(90deg, #f9a8d4, #ec4899, #db2777);
+
+    /* Checkbox */
+    --checkbox-border: #f9a8d4;
+    --checkbox-checked: #ec4899;
+
+    /* Rappels */
+    --reminder-bg: #fffbeb;
+    --reminder-border: #f59e0b;
+    --reminder-text: #92400e;
+    --reminder-urgent-bg: #fef2f2;
+    --reminder-urgent-border: #ef4444;
+    --reminder-urgent-text: #991b1b;
+
+    /* Toggle thème */
+    --toggle-bg: #fce7f3;
+    --toggle-knob: #ec4899;
+
+    /* Animations */
+    --transition-speed: 0.3s;
+
+    /* Branches SVG */
+    --branch-main: #5C3D2E;
+    --branch-sub: #6B4A3A;
+    --branch-twig: #7D5C4D;
+    --flower-pink-1: #FFB7C5;
+    --flower-pink-2: #FFC8D6;
+    --flower-pink-3: #FFE0E8;
+    --flower-white: #FFF5F7;
+    --flower-center: #D4956A;
+    --flower-center-dot: #C4784A;
+    --flower-opacity: 0.95;
+    --bud-color: #FF91A4;
+
+    /* Pétales tombantes */
+    --petal-1: rgba(255, 183, 197, 0.9);
+    --petal-2: rgba(255, 200, 214, 0.85);
+    --petal-3: rgba(255, 224, 232, 0.8);
+    --petal-4: rgba(255, 245, 247, 0.85);
+    --petal-gradient-1: radial-gradient(ellipse at 30% 30%, #fff 0%, #ffb7c5 60%, #ff91a4 100%);
+    --petal-gradient-2: radial-gradient(ellipse at 40% 20%, #fff 0%, #ffc8d6 50%, #ffb7c5 100%);
+    --petal-gradient-3: radial-gradient(ellipse at 30% 40%, #fff8f9 0%, #ffe0e8 60%, #ffc8d6 100%);
+}
+
+/* ===== VARIABLES — THÈME SOMBRE ===== */
+[data-theme="dark"] {
+    --sky-top: #0a0a1a;
+    --sky-mid: #121230;
+    --sky-bottom: #1a1035;
+
+    --bg-body: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 30%, var(--sky-bottom) 60%, #2d1326 85%, #1a0a14 100%);
+    --bg-container: rgba(45, 19, 38, 0.92);
+    --bg-card: #3b1a30;
+    --bg-input: #2d1326;
+    --bg-input-focus: #3b1a30;
+
+    --text-primary: #fce7f3;
+    --text-secondary: #f9a8d4;
+    --text-muted: #9d5c8a;
+    --text-on-accent: #ffffff;
+
+    --border-color: #5c2d4a;
+    --border-input: #7c3a60;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px rgba(236, 72, 153, 0.3);
+
+    --btn-primary-bg: linear-gradient(135deg, #db2777, #be185d, #9d174d);
+    --btn-primary-hover: linear-gradient(135deg, #ec4899, #db2777, #be185d);
+    --btn-edit-bg: linear-gradient(135deg, #7c3aed, #6d28d9);
+    --btn-edit-hover: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    --btn-delete-bg: linear-gradient(135deg, #e11d48, #be123c);
+    --btn-delete-hover: linear-gradient(135deg, #f43f5e, #e11d48);
+    --btn-save-bg: linear-gradient(135deg, #059669, #047857);
+    --btn-save-hover: linear-gradient(135deg, #10b981, #059669);
+    --btn-cancel-bg: linear-gradient(135deg, #475569, #334155);
+
+    --progress-bg: #3b1a30;
+    --progress-fill: linear-gradient(90deg, #db2777, #ec4899, #f472b6);
+
+    --checkbox-border: #7c3a60;
+    --checkbox-checked: #ec4899;
+
+    --reminder-bg: #451a03;
+    --reminder-border: #d97706;
+    --reminder-text: #fbbf24;
+    --reminder-urgent-bg: #450a0a;
+    --reminder-urgent-border: #dc2626;
+    --reminder-urgent-text: #fca5a5;
+
+    --toggle-bg: #5c2d4a;
+    --toggle-knob: #f472b6;
+
+    /* Branches en mode sombre — clair de lune */
+    --branch-main: #8B7065;
+    --branch-sub: #9A8075;
+    --branch-twig: #A89088;
+    --flower-pink-1: #c77d94;
+    --flower-pink-2: #d48fa3;
+    --flower-pink-3: #e0a5b5;
+    --flower-white: #e8c0cc;
+    --flower-center: #b8845e;
+    --flower-center-dot: #a06e48;
+    --flower-opacity: 0.7;
+    --bud-color: #a8606e;
+
+    /* Pétales tombantes — mode nuit */
+    --petal-1: rgba(199, 125, 148, 0.7);
+    --petal-2: rgba(212, 143, 163, 0.65);
+    --petal-3: rgba(224, 165, 181, 0.6);
+    --petal-4: rgba(232, 192, 204, 0.65);
+    --petal-gradient-1: radial-gradient(ellipse at 30% 30%, #e8c0cc 0%, #c77d94 60%, #a8606e 100%);
+    --petal-gradient-2: radial-gradient(ellipse at 40% 20%, #e0a5b5 0%, #d48fa3 50%, #c77d94 100%);
+    --petal-gradient-3: radial-gradient(ellipse at 30% 40%, #e8c0cc 0%, #e0a5b5 60%, #d48fa3 100%);
+}
+
+/* ===== RESET & BASE ===== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg-body);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background 0.6s ease, color var(--transition-speed) ease;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== BRANCHES DE CERISIER (SVG fond) ===== */
+.sakura-scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.sakura-scene svg {
+    width: 100%;
+    height: 100%;
+}
+
+.sakura-scene .branch-main {
+    stroke: var(--branch-main);
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.6s ease;
+}
+
+.sakura-scene .branch-sub {
+    stroke: var(--branch-sub);
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.6s ease;
+}
+
+.sakura-scene .branch-twig {
+    stroke: var(--branch-twig);
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.6s ease;
+}
+
+/* Fleurs SVG sur les branches */
+.sakura-scene .flower-petal {
+    transition: fill 0.6s ease, opacity 0.6s ease;
+    opacity: var(--flower-opacity);
+}
+
+.sakura-scene .flower-center {
+    fill: var(--flower-center);
+    transition: fill 0.6s ease;
+}
+
+.sakura-scene .flower-center-dot {
+    fill: var(--flower-center-dot);
+    transition: fill 0.6s ease;
+}
+
+.sakura-scene .bud {
+    fill: var(--bud-color);
+    transition: fill 0.6s ease;
+    opacity: var(--flower-opacity);
+}
+
+/* Animation subtile de balancement des branches */
+.sakura-scene .branch-group-right {
+    transform-origin: 100% 0%;
+    animation: branchSway 8s ease-in-out infinite;
+}
+
+.sakura-scene .branch-group-left {
+    transform-origin: 0% 0%;
+    animation: branchSway 10s ease-in-out infinite reverse;
+}
+
+@keyframes branchSway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(0.5deg); }
+}
+
+/* Fleurs qui tremblent légèrement */
+.sakura-scene .flower-group {
+    animation: flowerTremble 3s ease-in-out infinite;
+}
+
+.sakura-scene .flower-group:nth-child(even) {
+    animation-delay: -1.5s;
+    animation-duration: 3.5s;
+}
+
+@keyframes flowerTremble {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(0.5px, -0.5px) rotate(0.5deg); }
+    75% { transform: translate(-0.5px, 0.5px) rotate(-0.5deg); }
+}
+
+/* ===== PÉTALES DE CERISIER QUI TOMBENT ===== */
+.falling-petals {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* Forme de pétale réaliste */
+.petal {
+    position: absolute;
+    top: -30px;
+    opacity: 0;
+    transform-style: preserve-3d;
+}
+
+/* Pétale individuel — forme ovale avec pointe */
+.petal-shape {
+    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    box-shadow: inset 0 -2px 4px rgba(255, 145, 164, 0.3),
+                0 1px 3px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+/* Nervure centrale du pétale */
+.petal-shape::after {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 45%;
+    width: 1px;
+    height: 45%;
+    background: rgba(255, 145, 164, 0.25);
+    border-radius: 1px;
+    transform: rotate(-5deg);
+}
+
+/* Variantes de taille et couleur */
+.petal.size-sm .petal-shape { width: 10px; height: 13px; background: var(--petal-gradient-3); }
+.petal.size-md .petal-shape { width: 14px; height: 18px; background: var(--petal-gradient-1); }
+.petal.size-lg .petal-shape { width: 18px; height: 22px; background: var(--petal-gradient-2); }
+.petal.size-xl .petal-shape { width: 22px; height: 26px; background: var(--petal-gradient-1); }
+
+/* Fleur complète qui tombe (5 pétales) */
+.petal-flower {
+    position: absolute;
+    top: -40px;
+    opacity: 0;
+    transform-style: preserve-3d;
+}
+
+.petal-flower .mini-petal {
+    position: absolute;
+    width: 10px;
+    height: 13px;
+    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    transform-origin: 50% 100%;
+}
+
+.petal-flower .mini-petal:nth-child(1) { background: var(--petal-1); transform: rotate(0deg) translateY(-7px); }
+.petal-flower .mini-petal:nth-child(2) { background: var(--petal-2); transform: rotate(72deg) translateY(-7px); }
+.petal-flower .mini-petal:nth-child(3) { background: var(--petal-3); transform: rotate(144deg) translateY(-7px); }
+.petal-flower .mini-petal:nth-child(4) { background: var(--petal-2); transform: rotate(216deg) translateY(-7px); }
+.petal-flower .mini-petal:nth-child(5) { background: var(--petal-1); transform: rotate(288deg) translateY(-7px); }
+
+.petal-flower .flower-dot {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: var(--flower-center);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ===== ANIMATIONS DE CHUTE — 3 variantes ===== */
+
+/* Variante 1 : chute douce avec balancement */
+.petal.fall-1 { animation: petalFall1 linear infinite; }
+@keyframes petalFall1 {
+    0% {
+        transform: translateY(-20px) translateX(0px) rotateX(0deg) rotateZ(0deg);
+        opacity: 0;
+    }
+    8% { opacity: 1; }
+    20% { transform: translateY(18vh) translateX(40px) rotateX(60deg) rotateZ(45deg); }
+    40% { transform: translateY(38vh) translateX(-15px) rotateX(150deg) rotateZ(120deg); }
+    60% { transform: translateY(58vh) translateX(50px) rotateX(240deg) rotateZ(200deg); }
+    80% { transform: translateY(78vh) translateX(10px) rotateX(310deg) rotateZ(300deg); }
+    92% { opacity: 0.8; }
+    100% {
+        transform: translateY(105vh) translateX(35px) rotateX(360deg) rotateZ(360deg);
+        opacity: 0;
+    }
+}
+
+/* Variante 2 : chute avec virevoltement */
+.petal.fall-2 { animation: petalFall2 linear infinite; }
+@keyframes petalFall2 {
+    0% {
+        transform: translateY(-20px) translateX(0px) rotateY(0deg) rotateZ(0deg);
+        opacity: 0;
+    }
+    8% { opacity: 1; }
+    15% { transform: translateY(12vh) translateX(-30px) rotateY(90deg) rotateZ(30deg); }
+    30% { transform: translateY(28vh) translateX(25px) rotateY(180deg) rotateZ(90deg); }
+    50% { transform: translateY(48vh) translateX(-40px) rotateY(300deg) rotateZ(180deg); }
+    70% { transform: translateY(68vh) translateX(35px) rotateY(420deg) rotateZ(250deg); }
+    92% { opacity: 0.7; }
+    100% {
+        transform: translateY(105vh) translateX(-15px) rotateY(540deg) rotateZ(340deg);
+        opacity: 0;
+    }
+}
+
+/* Variante 3 : chute lente et planante */
+.petal.fall-3 { animation: petalFall3 linear infinite; }
+@keyframes petalFall3 {
+    0% {
+        transform: translateY(-20px) translateX(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+        opacity: 0;
+    }
+    6% { opacity: 0.9; }
+    25% { transform: translateY(22vh) translateX(60px) rotateX(45deg) rotateY(30deg) rotateZ(60deg); }
+    50% { transform: translateY(48vh) translateX(20px) rotateX(120deg) rotateY(90deg) rotateZ(150deg); }
+    75% { transform: translateY(72vh) translateX(70px) rotateX(200deg) rotateY(160deg) rotateZ(240deg); }
+    94% { opacity: 0.6; }
+    100% {
+        transform: translateY(105vh) translateX(45px) rotateX(280deg) rotateY(200deg) rotateZ(320deg);
+        opacity: 0;
+    }
+}
+
+/* Fleur complète qui tombe */
+.petal-flower.fall-flower { animation: flowerFall linear infinite; }
+@keyframes flowerFall {
+    0% {
+        transform: translateY(-30px) translateX(0px) rotate(0deg);
+        opacity: 0;
+    }
+    6% { opacity: 0.8; }
+    25% { transform: translateY(22vh) translateX(30px) rotate(90deg); }
+    50% { transform: translateY(48vh) translateX(-20px) rotate(200deg); }
+    75% { transform: translateY(72vh) translateX(40px) rotate(310deg); }
+    94% { opacity: 0.5; }
+    100% {
+        transform: translateY(105vh) translateX(15px) rotate(400deg);
+        opacity: 0;
+    }
+}
+
+/* === Positionnement et timing de chaque pétale === */
+.petal:nth-child(1)  { left: 5%;  animation-duration: 14s; animation-delay: 0s; }
+.petal:nth-child(2)  { left: 12%; animation-duration: 16s; animation-delay: 2s; }
+.petal:nth-child(3)  { left: 18%; animation-duration: 12s; animation-delay: 4s; }
+.petal:nth-child(4)  { left: 25%; animation-duration: 18s; animation-delay: 1s; }
+.petal:nth-child(5)  { left: 32%; animation-duration: 15s; animation-delay: 5s; }
+.petal:nth-child(6)  { left: 38%; animation-duration: 13s; animation-delay: 3s; }
+.petal:nth-child(7)  { left: 44%; animation-duration: 17s; animation-delay: 7s; }
+.petal:nth-child(8)  { left: 50%; animation-duration: 14s; animation-delay: 0.5s; }
+.petal:nth-child(9)  { left: 56%; animation-duration: 16s; animation-delay: 6s; }
+.petal:nth-child(10) { left: 62%; animation-duration: 12s; animation-delay: 2.5s; }
+.petal:nth-child(11) { left: 68%; animation-duration: 19s; animation-delay: 4.5s; }
+.petal:nth-child(12) { left: 74%; animation-duration: 13s; animation-delay: 1.5s; }
+.petal:nth-child(13) { left: 80%; animation-duration: 15s; animation-delay: 8s; }
+.petal:nth-child(14) { left: 85%; animation-duration: 17s; animation-delay: 3.5s; }
+.petal:nth-child(15) { left: 90%; animation-duration: 14s; animation-delay: 5.5s; }
+.petal:nth-child(16) { left: 8%;  animation-duration: 20s; animation-delay: 9s; }
+.petal:nth-child(17) { left: 22%; animation-duration: 13s; animation-delay: 6.5s; }
+.petal:nth-child(18) { left: 42%; animation-duration: 16s; animation-delay: 10s; }
+.petal:nth-child(19) { left: 58%; animation-duration: 14s; animation-delay: 7.5s; }
+.petal:nth-child(20) { left: 78%; animation-duration: 18s; animation-delay: 11s; }
+.petal:nth-child(21) { left: 3%;  animation-duration: 15s; animation-delay: 3s; }
+.petal:nth-child(22) { left: 95%; animation-duration: 13s; animation-delay: 8.5s; }
+.petal:nth-child(23) { left: 48%; animation-duration: 19s; animation-delay: 12s; }
+.petal:nth-child(24) { left: 35%; animation-duration: 14s; animation-delay: 0.8s; }
+.petal:nth-child(25) { left: 70%; animation-duration: 16s; animation-delay: 4s; }
+
+/* Fleurs qui tombent */
+.petal-flower:nth-of-type(1) { left: 15%; animation-duration: 22s; animation-delay: 5s; }
+.petal-flower:nth-of-type(2) { left: 55%; animation-duration: 25s; animation-delay: 12s; }
+.petal-flower:nth-of-type(3) { left: 82%; animation-duration: 20s; animation-delay: 18s; }
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+}
+
+/* ===== EN-TÊTE ===== */
+header {
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--sakura-500), var(--sakura-700));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+    text-shadow: none;
+}
+
+header p.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* ===== BARRE D'EN-TÊTE (thème toggle + titre) ===== */
+.header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+/* ===== TOGGLE THÈME (US13) ===== */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.theme-toggle .toggle-track {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: var(--toggle-bg);
+    border-radius: 14px;
+    transition: background var(--transition-speed) ease;
+    border: 2px solid var(--border-color);
+}
+
+.theme-toggle .toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--toggle-knob);
+    border-radius: 50%;
+    transition: transform var(--transition-speed) ease,
+                background var(--transition-speed) ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle .toggle-icon {
+    font-size: 1.2rem;
+    transition: transform var(--transition-speed) ease;
+}
+
+[data-theme="dark"] .theme-toggle .toggle-knob {
+    transform: translateX(24px);
+}
+
+/* ===== FORMULAIRE AJOUT DE TÂCHE ===== */
+#task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+#task-input,
+#task-deadline {
+    flex: 1;
+    padding: 14px 18px;
+    border: 2px solid var(--border-input);
+    border-radius: 14px;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    outline: none;
+}
+
+#task-input:focus,
+#task-deadline:focus {
+    border-color: var(--sakura-500);
+    background: var(--bg-input-focus);
+    box-shadow: var(--shadow-glow);
+}
+
+#task-input::placeholder {
+    color: var(--text-muted);
+}
+
+#task-deadline {
+    flex: 0 0 180px;
+    cursor: pointer;
+}
+
+#add-btn {
+    padding: 14px 28px;
+    background: var(--btn-primary-bg);
+    color: var(--text-on-accent);
+    border: none;
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+}
+
+#add-btn:hover {
+    background: var(--btn-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+#add-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== BARRE DE PROGRESSION (US15) ===== */
+.progress-section {
+    background: var(--bg-container);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-speed) ease;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.progress-header h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.progress-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.progress-stats .stat-value {
+    font-weight: 800;
+    color: var(--sakura-500);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: var(--progress-bg);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--progress-fill);
+    border-radius: 6px;
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    min-width: 0;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+.progress-percentage {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--sakura-500);
+}
+
+/* ===== COMPTEUR DE TÂCHES ===== */
+#task-counter {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    background: var(--bg-container);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+}
+
+/* ===== RAPPELS DE DEADLINE (US14) ===== */
+.reminders-section {
+    margin-bottom: 20px;
+}
+
+.reminder-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    animation: reminderSlideIn 0.4s ease-out;
+    border-left: 4px solid;
+    backdrop-filter: blur(10px);
+}
+
+.reminder-item.warning {
+    background: var(--reminder-bg);
+    border-color: var(--reminder-border);
+    color: var(--reminder-text);
+}
+
+.reminder-item.urgent {
+    background: var(--reminder-urgent-bg);
+    border-color: var(--reminder-urgent-border);
+    color: var(--reminder-urgent-text);
+    animation: reminderSlideIn 0.4s ease-out, reminderPulse 2s ease-in-out infinite 0.4s;
+}
+
+.reminder-item .reminder-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.reminder-item .reminder-text {
+    flex: 1;
+}
+
+.reminder-item .reminder-dismiss {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    color: inherit;
+}
+
+.reminder-item .reminder-dismiss:hover {
+    opacity: 1;
+}
+
+@keyframes reminderSlideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes reminderPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); box-shadow: 0 0 12px rgba(239, 68, 68, 0.2); }
+}
+
+/* ===== MESSAGE LISTE VIDE ===== */
+#empty-message {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 48px 24px;
+    background: var(--bg-container);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 2px dashed var(--border-color);
+}
+
+#empty-message::before {
+    content: '🌸';
+    display: block;
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+/* ===== LISTE DES TÂCHES ===== */
+#task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ===== ITEM DE TÂCHE ===== */
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-speed) ease;
+    animation: taskSlideIn 0.35s ease-out;
+    backdrop-filter: blur(8px);
+}
+
+.task-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--sakura-400);
+}
+
+@keyframes taskSlideIn {
+    from {
+        transform: translateY(16px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ===== CHECKBOX ===== */
+.task-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--checkbox-border);
+    border-radius: 7px;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all var(--transition-speed) ease;
+    background: transparent;
+}
+
+.task-checkbox:checked {
+    background: var(--checkbox-checked);
+    border-color: var(--checkbox-checked);
+}
+
+.task-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.task-checkbox:hover {
+    border-color: var(--sakura-500);
+    box-shadow: 0 0 8px rgba(236, 72, 153, 0.3);
+}
+
+/* ===== TEXTE DE LA TÂCHE ===== */
+.task-text {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-word;
+    transition: all var(--transition-speed) ease;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+/* ===== DATE LIMITE AFFICHÉE ===== */
+.task-deadline-display {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.task-deadline-display.upcoming {
+    background: var(--reminder-bg);
+    color: var(--reminder-text);
+    border: 1px solid var(--reminder-border);
+}
+
+.task-deadline-display.overdue {
+    background: var(--reminder-urgent-bg);
+    color: var(--reminder-urgent-text);
+    border: 1px solid var(--reminder-urgent-border);
+}
+
+.task-deadline-display.normal {
+    background: var(--sakura-200);
+    color: var(--sakura-700);
+    border: 1px solid var(--sakura-300);
+}
+
+[data-theme="dark"] .task-deadline-display.normal {
+    background: rgba(219, 39, 119, 0.2);
+    color: var(--sakura-400);
+    border: 1px solid rgba(219, 39, 119, 0.3);
+}
+
+/* ===== BOUTONS D'ACTION ===== */
+.task-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.task-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text-on-accent);
+    transition: all var(--transition-speed) ease;
+}
+
+.btn-edit {
+    background: var(--btn-edit-bg);
+}
+
+.btn-edit:hover {
+    background: var(--btn-edit-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-delete {
+    background: var(--btn-delete-bg);
+}
+
+.btn-delete:hover {
+    background: var(--btn-delete-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-save {
+    background: var(--btn-save-bg);
+}
+
+.btn-save:hover {
+    background: var(--btn-save-hover);
+    transform: translateY(-1px);
+}
+
+.btn-cancel {
+    background: var(--btn-cancel-bg);
+}
+
+.btn-cancel:hover {
+    transform: translateY(-1px);
+}
+
+/* ===== CHAMP D'ÉDITION INLINE ===== */
+.task-edit-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 2px solid var(--sakura-500);
+    border-radius: 10px;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    outline: none;
+    box-shadow: var(--shadow-glow);
+}
+
+/* ===== TOAST / NOTIFICATION SAUVEGARDE ===== */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 14px 28px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--sakura-400);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 16px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.footer .save-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--sakura-500);
+    font-weight: 700;
+}
+
+.footer .save-indicator .dot {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    .container {
+        padding: 24px 16px 40px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    #task-form {
+        flex-direction: column;
+    }
+
+    #task-deadline {
+        flex: 1;
+    }
+
+    .task-item {
+        flex-wrap: wrap;
+        padding: 14px 16px;
+        gap: 10px;
+    }
+
+    .task-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .progress-stats {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .header-bar {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* ===== ANIMATIONS UTILITAIRES ===== */
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animation de suppression */
+.task-item.removing {
+    animation: taskRemove 0.35s ease-in forwards;
+}
+
+@keyframes taskRemove {
+    to {
+        transform: translateX(100px);
+        opacity: 0;
+        height: 0;
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+}
+
+/* ===== SCROLLBAR CUSTOM ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--sakura-300);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--sakura-400);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--sakura-700);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--sakura-600);
+}

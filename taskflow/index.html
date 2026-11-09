@@ -3,18 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskFlow - Ma To-Do Liste</title>
-
+    <title>TaskFlow - Ma To-Do Liste 🌸</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+    <!-- ===== SCÈNE SAKURA : Branches de cerisier en arrière-plan ===== -->
+    <div class="sakura-scene">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMin slice">
+
+            <!-- ===== BRANCHE DROITE (principale) ===== -->
+            <g class="branch-group-right">
+                <!-- Tronc principal -->
+                <path class="branch-main" stroke-width="14"
+                    d="M1440,60 C1380,75 1320,100 1260,140 C1200,180 1150,220 1100,270 C1060,310 1020,350 980,400 C950,435 920,470 890,510"/>
+
+                <!-- Branches secondaires -->
+                <path class="branch-sub" stroke-width="7"
+                    d="M1320,100 C1300,80 1270,65 1240,55"/>
+                <path class="branch-sub" stroke-width="6"
+                    d="M1260,140 C1230,120 1200,108 1165,100"/>
+                <path class="branch-sub" stroke-width="5"
+                    d="M1200,180 C1220,165 1245,155 1270,152"/>
+                <path class="branch-sub" stroke-width="6"
+                    d="M1100,270 C1070,250 1040,240 1005,235"/>
+                <path class="branch-sub" stroke-width="5"
+                    d="M1100,270 C1125,255 1150,248 1180,250"/>
+                <path class="branch-sub" stroke-width="5"
+                    d="M980,400 C950,380 920,370 885,365"/>
+                <path class="branch-sub" stroke-width="4"
+                    d="M980,400 C1005,388 1030,382 1060,385"/>
+
+                <!-- Brindilles -->
+                <path class="branch-twig" stroke-width="3"
+                    d="M1240,55 C1225,42 1208,35 1190,30"/>
+                <path class="branch-twig" stroke-width="2.5"
+                    d="M1240,55 C1235,40 1238,25 1242,10"/>
+                <path class="branch-twig" stroke-width="2.5"
+                    d="M1165,100 C1150,88 1132,82 1112,78"/>
+                <path class="branch-twig" stroke-width="2"
+                    d="M1165,100 C1158,85 1155,68 1158,52"/>
+                <path class="branch-twig" stroke-width="2.5"
+                    d="M1005,235 C988,222 968,216 948,214"/>
+                <path class="branch-twig" stroke-width="2"
+                    d="M1005,235 C998,218 996,200 1000,182"/>
+                <path class="branch-twig" stroke-width="2"
+                    d="M885,365 C870,352 852,346 832,344"/>
+                <path class="branch-twig" stroke-width="2"
+                    d="M1060,385 C1078,376 1095,372 1115,374"/>
+
+                <!-- ===== FLEURS sur branche droite ===== -->
+
+                <!-- Fleur 1 — bout de branche haute -->
+                <g class="flower-group" transform="translate(1190,28) scale(1.1)">
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(0) translate(0,-9)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(72) translate(0,-9)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(144) translate(0,-9)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(216) translate(0,-9)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(288) translate(0,-9)" fill="var(--flower-pink-1)"/>
+                    <circle class="flower-center" r="3.5"/>
+                    <circle class="flower-center-dot" r="1" cx="-1" cy="-1"/>
+                    <circle class="flower-center-dot" r="1" cx="1.5" cy="0.5"/>
+                </g>
+
+                <!-- Fleur 2 -->
+                <g class="flower-group" transform="translate(1242,8) scale(0.85)">
+                    <ellipse class="flower-petal" rx="5.5" ry="9" transform="rotate(15) translate(0,-8)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9" transform="rotate(87) translate(0,-8)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9" transform="rotate(159) translate(0,-8)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9" transform="rotate(231) translate(0,-8)" fill="var(--flower-pink-3)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9" transform="rotate(303) translate(0,-8)" fill="var(--flower-white)"/>
+                    <circle class="flower-center" r="3"/>
+                    <circle class="flower-center-dot" r="0.8" cx="0" cy="-1"/>
+                </g>
+
+                <!-- Fleur 3 — grande -->
+                <g class="flower-group" transform="translate(1112,75) scale(1.3)">
+                    <ellipse class="flower-petal" rx="6.5" ry="11" transform="rotate(-10) translate(0,-10)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6.5" ry="11" transform="rotate(62) translate(0,-10)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="6.5" ry="11" transform="rotate(134) translate(0,-10)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="6.5" ry="11" transform="rotate(206) translate(0,-10)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6.5" ry="11" transform="rotate(278) translate(0,-10)" fill="var(--flower-pink-1)"/>
+                    <circle class="flower-center" r="4"/>
+                    <circle class="flower-center-dot" r="1" cx="-1.5" cy="-0.5"/>
+                    <circle class="flower-center-dot" r="1" cx="1" cy="-1.5"/>
+                    <circle class="flower-center-dot" r="0.8" cx="0.5" cy="1"/>
+                </g>
+
+                <!-- Fleur 4 -->
+                <g class="flower-group" transform="translate(1158,48) scale(0.9)">
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(5) translate(0,-8)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(77) translate(0,-8)" fill="var(--flower-pink-3)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(149) translate(0,-8)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(221) translate(0,-8)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(293) translate(0,-8)" fill="var(--flower-pink-1)"/>
+                    <circle class="flower-center" r="3"/>
+                </g>
+
+                <!-- Fleur 5 -->
+                <g class="flower-group" transform="translate(1270,150) scale(1.0)">
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(20) translate(0,-9)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(92) translate(0,-9)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(164) translate(0,-9)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(236) translate(0,-9)" fill="var(--flower-pink-3)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(308) translate(0,-9)" fill="var(--flower-white)"/>
+                    <circle class="flower-center" r="3.5"/>
+                    <circle class="flower-center-dot" r="1" cx="-1" cy="0"/>
+                    <circle class="flower-center-dot" r="0.8" cx="1" cy="-1"/>
+                </g>
+
+                <!-- Fleur 6 -->
+                <g class="flower-group" transform="translate(1180,248) scale(1.1)">
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(-5) translate(0,-9)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(67) translate(0,-9)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(139) translate(0,-9)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(211) translate(0,-9)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(283) translate(0,-9)" fill="var(--flower-pink-1)"/>
+                    <circle class="flower-center" r="3.5"/>
+                </g>
+
+                <!-- Fleur 7 -->
+                <g class="flower-group" transform="translate(948,212) scale(1.2)">
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(10) translate(0,-9.5)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(82) translate(0,-9.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(154) translate(0,-9.5)" fill="var(--flower-pink-3)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(226) translate(0,-9.5)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(298) translate(0,-9.5)" fill="var(--flower-white)"/>
+                    <circle class="flower-center" r="3.8"/>
+                    <circle class="flower-center-dot" r="1" cx="-1" cy="-1"/>
+                    <circle class="flower-center-dot" r="1" cx="1.2" cy="0.5"/>
+                </g>
+
+                <!-- Fleur 8 -->
+                <g class="flower-group" transform="translate(1000,180) scale(0.8)">
+                    <ellipse class="flower-petal" rx="5" ry="8.5" transform="rotate(-15) translate(0,-7.5)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8.5" transform="rotate(57) translate(0,-7.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8.5" transform="rotate(129) translate(0,-7.5)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8.5" transform="rotate(201) translate(0,-7.5)" fill="var(--flower-pink-3)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8.5" transform="rotate(273) translate(0,-7.5)" fill="var(--flower-white)"/>
+                    <circle class="flower-center" r="2.8"/>
+                </g>
+
+                <!-- Fleur 9 — bas -->
+                <g class="flower-group" transform="translate(832,342) scale(1.0)">
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(0) translate(0,-8.5)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(72) translate(0,-8.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(144) translate(0,-8.5)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(216) translate(0,-8.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(288) translate(0,-8.5)" fill="var(--flower-pink-1)"/>
+                    <circle class="flower-center" r="3.2"/>
+                </g>
+
+                <!-- Fleur 10 -->
+                <g class="flower-group" transform="translate(1060,383) scale(0.9)">
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(25) translate(0,-8)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(97) translate(0,-8)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(169) translate(0,-8)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(241) translate(0,-8)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(313) translate(0,-8)" fill="var(--flower-pink-3)"/>
+                    <circle class="flower-center" r="3"/>
+                </g>
+
+                <!-- Fleur 11 -->
+                <g class="flower-group" transform="translate(1115,372) scale(0.75)">
+                    <ellipse class="flower-petal" rx="5" ry="8" transform="rotate(0) translate(0,-7)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8" transform="rotate(72) translate(0,-7)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8" transform="rotate(144) translate(0,-7)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8" transform="rotate(216) translate(0,-7)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8" transform="rotate(288) translate(0,-7)" fill="var(--flower-white)"/>
+                    <circle class="flower-center" r="2.5"/>
+                </g>
+
+                <!-- Boutons de fleur (bourgeons) -->
+                <ellipse class="bud" cx="1225" cy="42" rx="4" ry="6" transform="rotate(-20, 1225, 42)"/>
+                <ellipse class="bud" cx="1280" cy="118" rx="3.5" ry="5.5" transform="rotate(10, 1280, 118)"/>
+                <ellipse class="bud" cx="1040" cy="245" rx="3" ry="5" transform="rotate(-30, 1040, 245)"/>
+                <ellipse class="bud" cx="920" cy="385" rx="3.5" ry="5" transform="rotate(15, 920, 385)"/>
+                <ellipse class="bud" cx="870" cy="355" rx="3" ry="4.5" transform="rotate(-10, 870, 355)"/>
+            </g>
+
+            <!-- ===== BRANCHE GAUCHE (plus petite) ===== -->
+            <g class="branch-group-left">
+                <!-- Tronc -->
+                <path class="branch-main" stroke-width="10"
+                    d="M0,160 C60,170 120,185 180,210 C240,235 290,260 340,300 C380,330 410,360 440,400"/>
+
+                <!-- Branches secondaires -->
+                <path class="branch-sub" stroke-width="5"
+                    d="M120,185 C110,165 95,148 75,135"/>
+                <path class="branch-sub" stroke-width="5"
+                    d="M240,235 C255,218 275,208 298,202"/>
+                <path class="branch-sub" stroke-width="4"
+                    d="M340,300 C325,280 305,268 282,260"/>
+                <path class="branch-sub" stroke-width="4"
+                    d="M340,300 C360,285 382,278 408,280"/>
+
+                <!-- Brindilles -->
+                <path class="branch-twig" stroke-width="2.5"
+                    d="M75,135 C62,120 48,112 30,108"/>
+                <path class="branch-twig" stroke-width="2"
+                    d="M75,135 C72,118 74,100 80,85"/>
+                <path class="branch-twig" stroke-width="2"
+                    d="M298,202 C312,192 328,188 348,188"/>
+                <path class="branch-twig" stroke-width="2"
+                    d="M282,260 C268,248 252,242 235,240"/>
+
+                <!-- Fleurs sur branche gauche -->
+
+                <!-- Fleur G1 -->
+                <g class="flower-group" transform="translate(30,106) scale(1.0)">
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(0) translate(0,-8.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(72) translate(0,-8.5)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(144) translate(0,-8.5)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(216) translate(0,-8.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(288) translate(0,-8.5)" fill="var(--flower-pink-1)"/>
+                    <circle class="flower-center" r="3.2"/>
+                    <circle class="flower-center-dot" r="0.9" cx="-1" cy="-0.5"/>
+                    <circle class="flower-center-dot" r="0.9" cx="1" cy="0.5"/>
+                </g>
+
+                <!-- Fleur G2 -->
+                <g class="flower-group" transform="translate(80,82) scale(0.85)">
+                    <ellipse class="flower-petal" rx="5" ry="8.5" transform="rotate(10) translate(0,-7.5)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8.5" transform="rotate(82) translate(0,-7.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8.5" transform="rotate(154) translate(0,-7.5)" fill="var(--flower-pink-3)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8.5" transform="rotate(226) translate(0,-7.5)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8.5" transform="rotate(298) translate(0,-7.5)" fill="var(--flower-white)"/>
+                    <circle class="flower-center" r="2.8"/>
+                </g>
+
+                <!-- Fleur G3 — grande -->
+                <g class="flower-group" transform="translate(298,200) scale(1.2)">
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(-8) translate(0,-9.5)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(64) translate(0,-9.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(136) translate(0,-9.5)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(208) translate(0,-9.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(280) translate(0,-9.5)" fill="var(--flower-pink-3)"/>
+                    <circle class="flower-center" r="3.8"/>
+                    <circle class="flower-center-dot" r="1" cx="-1.5" cy="0"/>
+                    <circle class="flower-center-dot" r="1" cx="0.5" cy="-1.5"/>
+                    <circle class="flower-center-dot" r="0.8" cx="1" cy="1"/>
+                </g>
+
+                <!-- Fleur G4 -->
+                <g class="flower-group" transform="translate(348,186) scale(0.75)">
+                    <ellipse class="flower-petal" rx="5" ry="8" transform="rotate(0) translate(0,-7)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8" transform="rotate(72) translate(0,-7)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8" transform="rotate(144) translate(0,-7)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8" transform="rotate(216) translate(0,-7)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5" ry="8" transform="rotate(288) translate(0,-7)" fill="var(--flower-white)"/>
+                    <circle class="flower-center" r="2.5"/>
+                </g>
+
+                <!-- Fleur G5 -->
+                <g class="flower-group" transform="translate(235,238) scale(1.0)">
+                    <ellipse class="flower-petal" rx="5.5" ry="9" transform="rotate(15) translate(0,-8)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9" transform="rotate(87) translate(0,-8)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9" transform="rotate(159) translate(0,-8)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9" transform="rotate(231) translate(0,-8)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9" transform="rotate(303) translate(0,-8)" fill="var(--flower-pink-1)"/>
+                    <circle class="flower-center" r="3"/>
+                </g>
+
+                <!-- Fleur G6 -->
+                <g class="flower-group" transform="translate(408,278) scale(0.9)">
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(-5) translate(0,-8)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(67) translate(0,-8)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(139) translate(0,-8)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(211) translate(0,-8)" fill="var(--flower-pink-3)"/>
+                    <ellipse class="flower-petal" rx="5" ry="9" transform="rotate(283) translate(0,-8)" fill="var(--flower-white)"/>
+                    <circle class="flower-center" r="3"/>
+                </g>
+
+                <!-- Bourgeons branche gauche -->
+                <ellipse class="bud" cx="60" cy="125" rx="3" ry="5" transform="rotate(20, 60, 125)"/>
+                <ellipse class="bud" cx="150" cy="195" rx="3.5" ry="5" transform="rotate(-15, 150, 195)"/>
+                <ellipse class="bud" cx="310" cy="268" rx="3" ry="4.5" transform="rotate(10, 310, 268)"/>
+                <ellipse class="bud" cx="380" cy="295" rx="3" ry="5" transform="rotate(-5, 380, 295)"/>
+            </g>
+
+        </svg>
+    </div>
+
+    <!-- ===== PÉTALES QUI TOMBENT ===== -->
+    <div class="falling-petals">
+        <!-- Pétales individuels — 25 pétales avec 3 variantes d'animation et 4 tailles -->
+        <div class="petal fall-1 size-md"><div class="petal-shape"></div></div>
+        <div class="petal fall-2 size-lg"><div class="petal-shape"></div></div>
+        <div class="petal fall-3 size-sm"><div class="petal-shape"></div></div>
+        <div class="petal fall-1 size-xl"><div class="petal-shape"></div></div>
+        <div class="petal fall-2 size-md"><div class="petal-shape"></div></div>
+        <div class="petal fall-3 size-lg"><div class="petal-shape"></div></div>
+        <div class="petal fall-1 size-sm"><div class="petal-shape"></div></div>
+        <div class="petal fall-2 size-md"><div class="petal-shape"></div></div>
+        <div class="petal fall-3 size-xl"><div class="petal-shape"></div></div>
+        <div class="petal fall-1 size-lg"><div class="petal-shape"></div></div>
+        <div class="petal fall-2 size-sm"><div class="petal-shape"></div></div>
+        <div class="petal fall-3 size-md"><div class="petal-shape"></div></div>
+        <div class="petal fall-1 size-md"><div class="petal-shape"></div></div>
+        <div class="petal fall-2 size-lg"><div class="petal-shape"></div></div>
+        <div class="petal fall-3 size-sm"><div class="petal-shape"></div></div>
+        <div class="petal fall-1 size-xl"><div class="petal-shape"></div></div>
+        <div class="petal fall-2 size-md"><div class="petal-shape"></div></div>
+        <div class="petal fall-3 size-lg"><div class="petal-shape"></div></div>
+        <div class="petal fall-1 size-sm"><div class="petal-shape"></div></div>
+        <div class="petal fall-2 size-xl"><div class="petal-shape"></div></div>
+        <div class="petal fall-3 size-md"><div class="petal-shape"></div></div>
+        <div class="petal fall-1 size-lg"><div class="petal-shape"></div></div>
+        <div class="petal fall-2 size-sm"><div class="petal-shape"></div></div>
+        <div class="petal fall-3 size-md"><div class="petal-shape"></div></div>
+        <div class="petal fall-1 size-lg"><div class="petal-shape"></div></div>
+
+        <!-- Fleurs complètes qui tombent (3 fleurs) -->
+        <div class="petal-flower fall-flower">
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="flower-dot"></div>
+        </div>
+        <div class="petal-flower fall-flower">
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="flower-dot"></div>
+        </div>
+        <div class="petal-flower fall-flower">
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="mini-petal"></div>
+            <div class="flower-dot"></div>
+        </div>
+    </div>
+
+    <!-- ===== APPLICATION ===== -->
     <div class="container">
         <!-- En-tête de l'application -->
         <header>
-            <h1>📝 Ma To-Do Liste</h1>
+            <!-- Barre avec toggle thème (US13) -->
+            <div class="header-bar">
+                <div></div>
+                <div class="theme-toggle" id="theme-toggle" title="Changer le thème">
+                    <span class="toggle-icon" id="theme-icon">☀️</span>
+                    <div class="toggle-track">
+                        <div class="toggle-knob"></div>
+                    </div>
+                    <span class="toggle-icon" id="theme-icon-moon">🌙</span>
+                </div>
+            </div>
+            <h1>🌸 TaskFlow</h1>
+            <p class="subtitle">Organisez vos tâches avec sérénité</p>
         </header>
 
-        <!-- Formulaire pour ajouter une tâche (US01) -->
+        <!-- Formulaire pour ajouter une tâche (US01 + US06 date limite) -->
         <form id="task-form">
             <input 
                 type="text" 
@@ -22,8 +368,31 @@
                 placeholder="Ajouter une nouvelle tâche..." 
                 required
             >
+            <input 
+                type="date" 
+                id="task-deadline" 
+                title="Date limite (optionnel)"
+            >
             <button type="submit" id="add-btn">Ajouter</button>
         </form>
+
+        <!-- Section de progression (US15) -->
+        <div class="progress-section" id="progress-section" style="display: none;">
+            <div class="progress-header">
+                <h3>📊 Progression</h3>
+                <div class="progress-stats">
+                    <span>Terminées : <span class="stat-value" id="completed-count">0</span></span>
+                    <span>Restantes : <span class="stat-value" id="remaining-count">0</span></span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="progress-percentage" id="progress-percentage">0 %</div>
+        </div>
+
+        <!-- Rappels de deadline (US14) -->
+        <div class="reminders-section" id="reminders-section"></div>
 
         <!-- Compteur de tâches (US05) -->
         <p id="task-counter"></p>
@@ -34,7 +403,18 @@
 
         <!-- Message quand la liste est vide (US05) -->
         <p id="empty-message">Aucune tâche pour le moment. Ajoutez-en une !</p>
+
+        <!-- Footer avec indicateur de sauvegarde -->
+        <div class="footer">
+            <div class="save-indicator">
+                <span class="dot"></span>
+                Sauvegarde automatique activée (localStorage)
+            </div>
+        </div>
     </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
 
     <script src="js/app.js"></script>
 </body>
