@@ -571,12 +571,24 @@ header p.subtitle {
 /* ===== FORMULAIRE AJOUT DE TÂCHE ===== */
 #task-form {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     margin-bottom: 12px;
 }
 
+.form-row {
+    display: flex;
+    gap: 10px;
+}
+
+.form-options {
+    flex-wrap: wrap;
+}
+
 #task-input,
-#task-deadline {
+#task-deadline,
+#task-priority,
+#task-category {
     flex: 1;
     padding: 14px 18px;
     border: 2px solid var(--border-input);
@@ -591,7 +603,9 @@ header p.subtitle {
 }
 
 #task-input:focus,
-#task-deadline:focus {
+#task-deadline:focus,
+#task-priority:focus,
+#task-category:focus {
     border-color: var(--sakura-500);
     background: var(--bg-input-focus);
     box-shadow: var(--shadow-glow);
@@ -602,7 +616,14 @@ header p.subtitle {
 }
 
 #task-deadline {
-    flex: 0 0 180px;
+    flex: 0 0 170px;
+    cursor: pointer;
+}
+
+#task-priority,
+#task-category {
+    flex: 0 0 auto;
+    min-width: 150px;
     cursor: pointer;
 }
 
@@ -1075,6 +1096,202 @@ header p.subtitle {
     50% { opacity: 0.5; transform: scale(0.8); }
 }
 
+/* ===== TOOLBAR : RECHERCHE, FILTRES, TRI (US09-US12) ===== */
+.toolbar {
+    background: var(--bg-container);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.toolbar-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.toolbar-filters {
+    flex-wrap: wrap;
+}
+
+/* Barre de recherche (US10) */
+.search-box {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box .search-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 18px 12px 40px;
+    border: 2px solid var(--border-input);
+    border-radius: 12px;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    outline: none;
+}
+
+#search-input:focus {
+    border-color: var(--sakura-500);
+    background: var(--bg-input-focus);
+    box-shadow: var(--shadow-glow);
+}
+
+#search-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Selects de filtre / tri */
+#filter-status,
+#filter-priority,
+#filter-category,
+#sort-order {
+    padding: 10px 14px;
+    border: 2px solid var(--border-input);
+    border-radius: 12px;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    outline: none;
+    flex: 1;
+    min-width: 130px;
+}
+
+#filter-status:focus,
+#filter-priority:focus,
+#filter-category:focus,
+#sort-order:focus {
+    border-color: var(--sakura-500);
+    box-shadow: var(--shadow-glow);
+}
+
+/* ===== CONTENU DE TÂCHE (texte + badges) ===== */
+.task-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+/* ===== BADGES (priorité, catégorie, deadline) ===== */
+.task-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+/* Badge priorité */
+.badge-priority-haute {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-priority-moyenne {
+    background: rgba(245, 158, 11, 0.15);
+    color: #d97706;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-priority-basse {
+    background: rgba(16, 185, 129, 0.15);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Badge catégorie */
+.badge-category {
+    background: rgba(139, 92, 246, 0.12);
+    color: var(--text-secondary);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+/* Dark mode badges */
+[data-theme="dark"] .badge-priority-haute {
+    background: rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+[data-theme="dark"] .badge-priority-moyenne {
+    background: rgba(245, 158, 11, 0.25);
+    color: #fcd34d;
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+[data-theme="dark"] .badge-priority-basse {
+    background: rgba(16, 185, 129, 0.25);
+    color: #6ee7b7;
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+[data-theme="dark"] .badge-category {
+    background: rgba(139, 92, 246, 0.25);
+    color: #c4b5fd;
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* Indicateur visuel de priorité sur la carte */
+.task-item.priority-haute {
+    border-left: 4px solid #ef4444;
+}
+
+.task-item.priority-moyenne {
+    border-left: 4px solid #f59e0b;
+}
+
+.task-item.priority-basse {
+    border-left: 4px solid #10b981;
+}
+
+/* Message aucun résultat */
+.no-result-message {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 32px 24px;
+    background: var(--bg-container);
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    border: 2px dashed var(--border-color);
+    list-style: none;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
     .container {
@@ -1085,12 +1302,30 @@ header p.subtitle {
         font-size: 1.6rem;
     }
 
-    #task-form {
+    .form-row {
         flex-direction: column;
     }
 
-    #task-deadline {
+    #task-deadline,
+    #task-priority,
+    #task-category {
         flex: 1;
+    }
+
+    .toolbar-row {
+        flex-direction: column;
+    }
+
+    .toolbar-filters {
+        flex-direction: column;
+    }
+
+    #filter-status,
+    #filter-priority,
+    #filter-category,
+    #sort-order {
+        flex: 1;
+        width: 100%;
     }
 
     .task-item {

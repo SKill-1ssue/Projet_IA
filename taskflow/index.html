@@ -360,21 +360,80 @@
             <p class="subtitle">Organisez vos tâches avec sérénité</p>
         </header>
 
-        <!-- Formulaire pour ajouter une tâche (US01 + US06 date limite) -->
+        <!-- Formulaire pour ajouter une tâche (US01 + US06 + US07 + US08) -->
         <form id="task-form">
-            <input 
-                type="text" 
-                id="task-input" 
-                placeholder="Ajouter une nouvelle tâche..." 
-                required
-            >
-            <input 
-                type="date" 
-                id="task-deadline" 
-                title="Date limite (optionnel)"
-            >
-            <button type="submit" id="add-btn">Ajouter</button>
+            <div class="form-row">
+                <input 
+                    type="text" 
+                    id="task-input" 
+                    placeholder="Ajouter une nouvelle tâche..." 
+                    required
+                >
+                <button type="submit" id="add-btn">Ajouter</button>
+            </div>
+            <div class="form-row form-options">
+                <input 
+                    type="date" 
+                    id="task-deadline" 
+                    title="Date limite (optionnel)"
+                >
+                <!-- US07 : Priorité -->
+                <select id="task-priority" title="Priorité">
+                    <option value="">— Priorité —</option>
+                    <option value="haute">🔴 Haute</option>
+                    <option value="moyenne">🟠 Moyenne</option>
+                    <option value="basse">🟢 Basse</option>
+                </select>
+                <!-- US08 : Catégorie (peuplé dynamiquement par JS) -->
+                <div class="category-select-wrapper">
+                    <select id="task-category" title="Catégorie">
+                        <option value="">— Catégorie —</option>
+                    </select>
+                    <button type="button" class="btn-manage-categories" id="btn-manage-categories" title="Gérer les catégories">⚙️</button>
+                </div>
+            </div>
         </form>
+
+        <!-- Barre de recherche et filtres (US09, US10, US11, US12) -->
+        <div class="toolbar" id="toolbar" style="display: none;">
+            <!-- US10 : Recherche -->
+            <div class="toolbar-row">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Rechercher une tâche..."
+                    >
+                </div>
+            </div>
+            <div class="toolbar-row toolbar-filters">
+                <!-- US11 / US12 : Filtrage par statut -->
+                <select id="filter-status" title="Filtrer par statut">
+                    <option value="toutes">📋 Toutes</option>
+                    <option value="en-cours">⏳ Non terminées</option>
+                    <option value="terminees">✅ Terminées</option>
+                </select>
+                <!-- Filtre par priorité -->
+                <select id="filter-priority" title="Filtrer par priorité">
+                    <option value="">Toutes priorités</option>
+                    <option value="haute">🔴 Haute</option>
+                    <option value="moyenne">🟠 Moyenne</option>
+                    <option value="basse">🟢 Basse</option>
+                </select>
+                <!-- Filtre par catégorie (peuplé dynamiquement par JS) -->
+                <select id="filter-category" title="Filtrer par catégorie">
+                    <option value="">Toutes catégories</option>
+                </select>
+                <!-- US09 : Tri par date -->
+                <select id="sort-order" title="Trier">
+                    <option value="creation">🕐 Par création</option>
+                    <option value="date-asc">📅 Échéance ↑</option>
+                    <option value="date-desc">📅 Échéance ↓</option>
+                    <option value="priority">⚡ Par priorité</option>
+                </select>
+            </div>
+        </div>
 
         <!-- Section de progression (US15) -->
         <div class="progress-section" id="progress-section" style="display: none;">
@@ -409,6 +468,37 @@
             <div class="save-indicator">
                 <span class="dot"></span>
                 Sauvegarde automatique activée (localStorage)
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale de gestion des catégories -->
+    <div class="modal-overlay" id="category-modal" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>🏷️ Gérer les catégories</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulaire d'ajout -->
+                <div class="category-add-form">
+                    <input 
+                        type="text" 
+                        id="new-category-name" 
+                        placeholder="Nom de la catégorie"
+                        maxlength="30"
+                    >
+                    <input 
+                        type="text" 
+                        id="new-category-emoji" 
+                        placeholder="Emoji (ex: 🎯)"
+                        maxlength="2"
+                        class="emoji-input"
+                    >
+                    <button type="button" id="btn-add-category" class="btn-add-category">+ Ajouter</button>
+                </div>
+                <!-- Liste des catégories existantes -->
+                <ul class="category-list" id="category-list"></ul>
             </div>
         </div>
     </div>

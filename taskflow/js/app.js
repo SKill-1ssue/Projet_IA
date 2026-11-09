@@ -2,6 +2,12 @@
 // 🌸 TASKFLOW — Application To-Do List
 // US01-US05 : CRUD + consultation
 // US06 : Date limite
+// US07 : Priorité
+// US08 : Catégorie
+// US09 : Tri par date
+// US10 : Recherche par nom
+// US11 : Filtrer tâches terminées
+// US12 : Filtrer tâches non terminées
 // US13 : Thème clair / sombre (localStorage)
 // US14 : Rappels avant deadline
 // US15 : Visualisation de la progression
@@ -15,10 +21,24 @@ let tasks = [];
 // Compteur pour générer un identifiant unique pour chaque tâche
 let taskIdCounter = 0;
 
+// Catégories par défaut + catégories personnalisées
+var defaultCategories = [
+    { id: 'travail', name: 'Travail', emoji: '💼' },
+    { id: 'personnel', name: 'Personnel', emoji: '🏠' },
+    { id: 'études', name: 'Études', emoji: '📚' },
+    { id: 'sport', name: 'Sport', emoji: '🏃' },
+    { id: 'courses', name: 'Courses', emoji: '🛒' },
+    { id: 'autre', name: 'Autre', emoji: '📌' }
+];
+
+let customCategories = [];
+
 // ===== ÉLÉMENTS DU DOM =====
 const taskForm = document.getElementById('task-form');
 const taskInput = document.getElementById('task-input');
 const taskDeadline = document.getElementById('task-deadline');
+const taskPriority = document.getElementById('task-priority');
+const taskCategory = document.getElementById('task-category');
 const taskList = document.getElementById('task-list');
 const emptyMessage = document.getElementById('empty-message');
 const taskCounter = document.getElementById('task-counter');
@@ -32,6 +52,19 @@ const progressFill = document.getElementById('progress-fill');
 const progressPercentage = document.getElementById('progress-percentage');
 const remindersSection = document.getElementById('reminders-section');
 const toastEl = document.getElementById('toast');
+const searchInput = document.getElementById('search-input');
+const filterStatus = document.getElementById('filter-status');
+const filterPriority = document.getElementById('filter-priority');
+const filterCategory = document.getElementById('filter-category');
+const sortOrder = document.getElementById('sort-order');
+const toolbar = document.getElementById('toolbar');
+const btnManageCategories = document.getElementById('btn-manage-categories');
+const categoryModal = document.getElementById('category-modal');
+const modalClose = document.getElementById('modal-close');
+const newCategoryName = document.getElementById('new-category-name');
+const newCategoryEmoji = document.getElementById('new-category-emoji');
+const btnAddCategory = document.getElementById('btn-add-category');
+const categoryListEl = document.getElementById('category-list');
 
 // ===== SAUVEGARDE LOCALSTORAGE =====
 
@@ -117,14 +150,18 @@ function updateThemeIcon() {
  * Crée un nouvel objet tâche et l'ajoute au tableau
  * @param {string} text - Le texte de la tâche
  * @param {string} deadline - La date limite (optionnel, format YYYY-MM-DD)
+ * @param {string} priority - La priorité (optionnel : haute, moyenne, basse)
+ * @param {string} category - La catégorie (optionnel)
  * @returns {object} - L'objet tâche créé
  */
-function createTask(text, deadline) {
+function createTask(text, deadline, priority, category) {
     var task = {
         id: taskIdCounter++,
         text: text,
         completed: false,
         deadline: deadline || null,
+        priority: priority || null,
+        category: category || null,
         createdAt: new Date().toISOString(),
         reminderDismissed: false
     };
@@ -144,6 +181,11 @@ function createTaskElement(task) {
     li.classList.add('task-item');
     li.setAttribute('data-id', task.id);
 
+    // Ajouter une classe de priorité si elle existe (US07)
+    if (task.priority) {
+        li.classList.add('priority-' + task.priority);
+    }
+
     // Checkbox pour marquer comme terminée (US04)
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -153,20 +195,49 @@ function createTaskElement(task) {
         toggleTask(task.id);
     });
 
+    // Créer le contenu principal (texte + badges)
+    var contentDiv = document.createElement('div');
+    contentDiv.classList.add('task-content');
+
     // Créer le texte de la tâche
     var span = document.createElement('span');
     span.classList.add('task-text');
     span.textContent = task.text;
 
-    // Si la tâche est terminée, barrer le texte
-    if (task.completed) {
-        li.classList.add('completed');
+    contentDiv.appendChild(span);
+
+    // Ligne de badges (priorité, catégorie, deadline)
+    var badgesDiv = document.createElement('div');
+    badgesDiv.classList.add('task-badges');
+
+    // Badge de priorité (US07)
+    if (task.priority) {
+        var priorityBadge = document.createElement('span');
+        priorityBadge.classList.add('badge', 'badge-priority', 'badge-priority-' + task.priority);
+        var priorityLabels = { haute: '🔴 Haute', moyenne: '🟠 Moyenne', basse: '🟢 Basse' };
+        priorityBadge.textContent = priorityLabels[task.priority] || task.priority;
+        badgesDiv.appendChild(priorityBadge);
+    }
+
+    // Badge de catégorie (US08)
+    if (task.category) {
+        var categoryBadge = document.createElement('span');
+        categoryBadge.classList.add('badge', 'badge-category');
+        var categoryLabels = {
+            travail: '💼 Travail',
+            personnel: '🏠 Personnel',
+            'études': '📚 Études',
+            sport: '🏃 Sport',
+            courses: '🛒 Courses',
+            autre: '📌 Autre'
+        };
+        categoryBadge.textContent = categoryLabels[task.category] || task.category;
+        badgesDiv.appendChild(categoryBadge);
     }
 
     // Afficher la date limite si elle existe (US06)
-    var deadlineEl = null;
     if (task.deadline) {
-        deadlineEl = document.createElement('span');
+        var deadlineEl = document.createElement('span');
         deadlineEl.classList.add('task-deadline-display');
 
         var deadlineDate = new Date(task.deadline + 'T23:59:59');
@@ -194,6 +265,18 @@ function createTaskElement(task) {
             deadlineEl.classList.add('normal');
             deadlineEl.textContent = '📅 ' + formattedDate;
         }
+
+        badgesDiv.appendChild(deadlineEl);
+    }
+
+    // N'ajouter la ligne de badges que si elle contient quelque chose
+    if (badgesDiv.children.length > 0) {
+        contentDiv.appendChild(badgesDiv);
+    }
+
+    // Si la tâche est terminée, barrer le texte
+    if (task.completed) {
+        li.classList.add('completed');
     }
 
     // Créer le conteneur des boutons d'action
@@ -221,13 +304,77 @@ function createTaskElement(task) {
 
     // Assembler le tout
     li.appendChild(checkbox);
-    li.appendChild(span);
-    if (deadlineEl) {
-        li.appendChild(deadlineEl);
-    }
+    li.appendChild(contentDiv);
     li.appendChild(actions);
 
     return li;
+}
+
+/**
+ * Retourne les tâches filtrées, recherchées et triées (US09, US10, US11, US12)
+ * @returns {Array} - Tableau de tâches filtrées et triées
+ */
+function getFilteredTasks() {
+    var filtered = tasks.slice(); // copie
+
+    // US10 : Recherche par nom
+    var searchTerm = searchInput.value.trim().toLowerCase();
+    if (searchTerm !== '') {
+        filtered = filtered.filter(function(t) {
+            return t.text.toLowerCase().indexOf(searchTerm) !== -1;
+        });
+    }
+
+    // US11 / US12 : Filtrage par statut
+    var statusFilter = filterStatus.value;
+    if (statusFilter === 'en-cours') {
+        filtered = filtered.filter(function(t) { return !t.completed; });
+    } else if (statusFilter === 'terminees') {
+        filtered = filtered.filter(function(t) { return t.completed; });
+    }
+
+    // Filtrage par priorité
+    var priorityFilter = filterPriority.value;
+    if (priorityFilter !== '') {
+        filtered = filtered.filter(function(t) { return t.priority === priorityFilter; });
+    }
+
+    // Filtrage par catégorie
+    var categoryFilter = filterCategory.value;
+    if (categoryFilter !== '') {
+        filtered = filtered.filter(function(t) { return t.category === categoryFilter; });
+    }
+
+    // US09 : Tri
+    var sort = sortOrder.value;
+    if (sort === 'date-asc') {
+        // Échéance croissante (les tâches sans deadline à la fin)
+        filtered.sort(function(a, b) {
+            if (!a.deadline && !b.deadline) return 0;
+            if (!a.deadline) return 1;
+            if (!b.deadline) return -1;
+            return a.deadline.localeCompare(b.deadline);
+        });
+    } else if (sort === 'date-desc') {
+        // Échéance décroissante
+        filtered.sort(function(a, b) {
+            if (!a.deadline && !b.deadline) return 0;
+            if (!a.deadline) return 1;
+            if (!b.deadline) return -1;
+            return b.deadline.localeCompare(a.deadline);
+        });
+    } else if (sort === 'priority') {
+        // Tri par priorité (haute > moyenne > basse > sans)
+        var priorityOrder = { haute: 0, moyenne: 1, basse: 2 };
+        filtered.sort(function(a, b) {
+            var pa = a.priority ? priorityOrder[a.priority] : 3;
+            var pb = b.priority ? priorityOrder[b.priority] : 3;
+            return pa - pb;
+        });
+    }
+    // 'creation' = ordre par défaut (ordre du tableau)
+
+    return filtered;
 }
 
 /**
@@ -237,8 +384,18 @@ function renderTasks() {
     // Vider la liste actuelle
     taskList.innerHTML = '';
 
+    // Afficher ou masquer la toolbar
+    if (tasks.length === 0) {
+        toolbar.style.display = 'none';
+    } else {
+        toolbar.style.display = 'block';
+    }
+
+    // Récupérer les tâches filtrées et triées
+    var filteredTasks = getFilteredTasks();
+
     // Ajouter chaque tâche
-    tasks.forEach(function(task) {
+    filteredTasks.forEach(function(task) {
         var li = createTaskElement(task);
         taskList.appendChild(li);
     });
@@ -257,6 +414,14 @@ function renderTasks() {
         var completedCount = tasks.filter(function(t) { return t.completed; }).length;
         var remainingCount = tasks.length - completedCount;
         taskCounter.textContent = remainingCount + ' tâche(s) restante(s) | ' + completedCount + ' terminée(s) sur ' + tasks.length;
+
+        // Afficher un message si le filtre ne donne aucun résultat
+        if (filteredTasks.length === 0) {
+            var noResultMsg = document.createElement('li');
+            noResultMsg.classList.add('no-result-message');
+            noResultMsg.textContent = '🔍 Aucune tâche ne correspond aux filtres sélectionnés.';
+            taskList.appendChild(noResultMsg);
+        }
     }
 
     // Mettre à jour la progression (US15)
@@ -560,14 +725,16 @@ taskForm.addEventListener('submit', function(event) {
     // Récupérer le texte saisi et enlever les espaces inutiles
     var text = taskInput.value.trim();
     var deadline = taskDeadline.value || null;
+    var priority = taskPriority.value || null;
+    var category = taskCategory.value || null;
 
     // Vérifier que le champ n'est pas vide
     if (text === '') {
         return;
     }
 
-    // Créer la tâche
-    createTask(text, deadline);
+    // Créer la tâche (US01 + US06 + US07 + US08)
+    createTask(text, deadline, priority, category);
 
     // Mettre à jour l'affichage
     renderTasks();
@@ -575,6 +742,8 @@ taskForm.addEventListener('submit', function(event) {
     // Vider les champs de saisie
     taskInput.value = '';
     taskDeadline.value = '';
+    taskPriority.value = '';
+    taskCategory.value = '';
 
     // Remettre le focus sur le champ
     taskInput.focus();
@@ -583,6 +752,33 @@ taskForm.addEventListener('submit', function(event) {
 // Toggle thème (US13)
 themeToggle.addEventListener('click', function() {
     toggleTheme();
+});
+
+// ===== ÉCOUTEURS TOOLBAR (US09, US10, US11, US12) =====
+
+// US10 : Recherche en temps réel
+searchInput.addEventListener('input', function() {
+    renderTasks();
+});
+
+// US11 / US12 : Filtrage par statut
+filterStatus.addEventListener('change', function() {
+    renderTasks();
+});
+
+// Filtrage par priorité
+filterPriority.addEventListener('change', function() {
+    renderTasks();
+});
+
+// Filtrage par catégorie
+filterCategory.addEventListener('change', function() {
+    renderTasks();
+});
+
+// US09 : Tri
+sortOrder.addEventListener('change', function() {
+    renderTasks();
 });
 
 // ===== INITIALISATION =====
