@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Ma To-Do Liste</title>
+
+</head>
+<body>
+
+    <div class="container">
+        <!-- En-tête de l'application -->
+        <header>
+            <h1>📝 Ma To-Do Liste</h1>
+        </header>
+
+        <!-- Formulaire pour ajouter une tâche (US01) -->
+        <form id="task-form">
+            <input 
+                type="text" 
+                id="task-input" 
+                placeholder="Ajouter une nouvelle tâche..." 
+                required
+            >
+            <button type="submit" id="add-btn">Ajouter</button>
+        </form>
+
+        <!-- Compteur de tâches (US05) -->
+        <p id="task-counter"></p>
+
+        <!-- Liste des tâches -->
+        <ul id="task-list">
+        </ul>
+
+        <!-- Message quand la liste est vide (US05) -->
+        <p id="empty-message">Aucune tâche pour le moment. Ajoutez-en une !</p>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
