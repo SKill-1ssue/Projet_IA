@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow — Authentification 🌸</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+    <!-- ===== SCÈNE SAKURA (identique à index.html) ===== -->
+    <div class="sakura-scene" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMin slice">
+            <g class="branch-group-right">
+                <path class="branch-main" stroke-width="14"
+                    d="M1440,60 C1380,75 1320,100 1260,140 C1200,180 1150,220 1100,270 C1060,310 1020,350 980,400 C950,435 920,470 890,510"/>
+                <path class="branch-sub" stroke-width="7" d="M1320,100 C1300,80 1270,65 1240,55"/>
+                <path class="branch-sub" stroke-width="6" d="M1260,140 C1230,120 1200,108 1165,100"/>
+                <path class="branch-sub" stroke-width="5" d="M1100,270 C1070,250 1040,240 1005,235"/>
+                <g class="flower-group" transform="translate(1190,28) scale(1.1)">
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(0) translate(0,-9)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(72) translate(0,-9)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(144) translate(0,-9)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(216) translate(0,-9)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10" transform="rotate(288) translate(0,-9)" fill="var(--flower-pink-1)"/>
+                    <circle class="flower-center" r="3.5"/>
+                </g>
+                <g class="flower-group" transform="translate(1112,75) scale(1.3)">
+                    <ellipse class="flower-petal" rx="6.5" ry="11" transform="rotate(-10) translate(0,-10)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6.5" ry="11" transform="rotate(62) translate(0,-10)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="6.5" ry="11" transform="rotate(134) translate(0,-10)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="6.5" ry="11" transform="rotate(206) translate(0,-10)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6.5" ry="11" transform="rotate(278) translate(0,-10)" fill="var(--flower-pink-1)"/>
+                    <circle class="flower-center" r="4"/>
+                </g>
+            </g>
+            <g class="branch-group-left">
+                <path class="branch-main" stroke-width="10"
+                    d="M0,160 C60,170 120,185 180,210 C240,235 290,260 340,300 C380,330 410,360 440,400"/>
+                <path class="branch-sub" stroke-width="5" d="M120,185 C110,165 95,148 75,135"/>
+                <path class="branch-sub" stroke-width="5" d="M240,235 C255,218 275,208 298,202"/>
+                <g class="flower-group" transform="translate(30,106) scale(1.0)">
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(0) translate(0,-8.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(72) translate(0,-8.5)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(144) translate(0,-8.5)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(216) translate(0,-8.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="5.5" ry="9.5" transform="rotate(288) translate(0,-8.5)" fill="var(--flower-pink-1)"/>
+                    <circle class="flower-center" r="3.2"/>
+                </g>
+                <g class="flower-group" transform="translate(298,200) scale(1.2)">
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(-8) translate(0,-9.5)" fill="var(--flower-pink-2)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(64) translate(0,-9.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(136) translate(0,-9.5)" fill="var(--flower-pink-1)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(208) translate(0,-9.5)" fill="var(--flower-white)"/>
+                    <ellipse class="flower-petal" rx="6" ry="10.5" transform="rotate(280) translate(0,-9.5)" fill="var(--flower-pink-3)"/>
+                    <circle class="flower-center" r="3.8"/>
+                </g>
+            </g>
+        </svg>
+    </div>
+
+    <!-- ===== PÉTALES QUI TOMBENT ===== -->
+    <div class="falling-petals" aria-hidden="true">
+        <div class="petal fall-1 size-md"><div class="petal-shape"></div></div>
+        <div class="petal fall-2 size-lg"><div class="petal-shape"></div></div>
+        <div class="petal fall-3 size-sm"><div class="petal-shape"></div></div>
+        <div class="petal fall-1 size-xl"><div class="petal-shape"></div></div>
+        <div class="petal fall-2 size-md"><div class="petal-shape"></div></div>
+        <div class="petal fall-3 size-lg"><div class="petal-shape"></div></div>
+    </div>
+
+    <!-- ===== PAGE AUTH ===== -->
+    <div class="auth-page">
+        <div class="auth-card">
+
+            <!-- Logo -->
+            <div class="auth-logo">
+                <span class="auth-logo-icon">🌸</span>
+                <h1 class="auth-logo-title">TaskFlow</h1>
+                <p class="auth-logo-sub">Organisez vos tâches avec sérénité</p>
+            </div>
+
+            <!-- Onglets -->
+            <div class="auth-tabs" role="tablist">
+                <button class="auth-tab active" id="tab-login" role="tab" aria-selected="true" aria-controls="panel-login">
+                    Connexion
+                </button>
+                <button class="auth-tab" id="tab-register" role="tab" aria-selected="false" aria-controls="panel-register">
+                    Inscription
+                </button>
+                <button class="auth-tab" id="tab-recover" role="tab" aria-selected="false" aria-controls="panel-recover">
+                    Récupération
+                </button>
+            </div>
+
+            <!-- Zone d'erreur/succès globale -->
+            <div class="auth-alert" id="auth-alert" role="alert" aria-live="polite" style="display:none;"></div>
+
+            <!-- ===== PANEL : CONNEXION ===== -->
+            <div class="auth-panel active" id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+                <form id="form-login" novalidate>
+
+                    <div class="auth-field">
+                        <label for="login-username">Nom d'utilisateur</label>
+                        <input
+                            type="text"
+                            id="login-username"
+                            name="username"
+                            placeholder="Votre nom d'utilisateur"
+                            autocomplete="username"
+                            maxlength="20"
+                            required
+                        >
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="login-password">Mot de passe</label>
+                        <div class="auth-input-group">
+                            <input
+                                type="password"
+                                id="login-password"
+                                name="password"
+                                placeholder="Votre mot de passe"
+                                autocomplete="current-password"
+                                required
+                            >
+                            <button type="button" class="btn-toggle-pw" data-target="login-password" title="Afficher/masquer le mot de passe" aria-label="Afficher le mot de passe">
+                                👁️
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="auth-btn-submit" id="btn-login">
+                        Se connecter
+                    </button>
+
+                    <p class="auth-link-row">
+                        <a href="#" class="auth-link" id="link-to-recover">Mot de passe oublié ?</a>
+                    </p>
+                </form>
+            </div>
+
+            <!-- ===== PANEL : INSCRIPTION ===== -->
+            <div class="auth-panel" id="panel-register" role="tabpanel" aria-labelledby="tab-register" style="display:none;">
+                <form id="form-register" novalidate>
+
+                    <div class="auth-field">
+                        <label for="reg-username">Nom d'utilisateur</label>
+                        <input
+                            type="text"
+                            id="reg-username"
+                            name="username"
+                            placeholder="3 à 20 caractères alphanumériques"
+                            autocomplete="username"
+                            maxlength="20"
+                            required
+                        >
+                        <span class="auth-hint">Lettres, chiffres et _ uniquement</span>
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="reg-password">Mot de passe</label>
+                        <div class="auth-input-group">
+                            <input
+                                type="password"
+                                id="reg-password"
+                                name="password"
+                                placeholder="12 caractères minimum"
+                                autocomplete="new-password"
+                                required
+                            >
+                            <button type="button" class="btn-toggle-pw" data-target="reg-password" title="Afficher/masquer" aria-label="Afficher le mot de passe">
+                                👁️
+                            </button>
+                        </div>
+                        <!-- Indicateur de robustesse -->
+                        <div class="strength-bar" id="strength-bar" aria-label="Robustesse du mot de passe">
+                            <div class="strength-fill" id="strength-fill"></div>
+                        </div>
+                        <span class="strength-label" id="strength-label"></span>
+                        <!-- Critères détaillés -->
+                        <ul class="strength-criteria" id="strength-criteria" aria-live="polite">
+                            <li id="crit-length">✗ 12 caractères minimum</li>
+                            <li id="crit-upper">✗ Une majuscule</li>
+                            <li id="crit-lower">✗ Une minuscule</li>
+                            <li id="crit-digit">✗ Un chiffre</li>
+                            <li id="crit-special">✗ Un caractère spécial (!@#$…)</li>
+                        </ul>
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="reg-confirm">Confirmer le mot de passe</label>
+                        <div class="auth-input-group">
+                            <input
+                                type="password"
+                                id="reg-confirm"
+                                name="confirm"
+                                placeholder="Répétez le mot de passe"
+                                autocomplete="new-password"
+                                required
+                            >
+                            <button type="button" class="btn-toggle-pw" data-target="reg-confirm" title="Afficher/masquer" aria-label="Afficher la confirmation">
+                                👁️
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="reg-secret">Mot secret de récupération</label>
+                        <input
+                            type="text"
+                            id="reg-secret"
+                            name="secret"
+                            placeholder="Ex : nom de votre premier animal"
+                            autocomplete="off"
+                            maxlength="200"
+                            required
+                        >
+                        <span class="auth-hint">Permet de récupérer l'accès à votre compte</span>
+                    </div>
+
+                    <button type="submit" class="auth-btn-submit" id="btn-register">
+                        Créer mon compte
+                    </button>
+                </form>
+            </div>
+
+            <!-- ===== PANEL : RÉCUPÉRATION ===== -->
+            <div class="auth-panel" id="panel-recover" role="tabpanel" aria-labelledby="tab-recover" style="display:none;">
+
+                <!-- Étape 1 : Vérification -->
+                <form id="form-recover" novalidate>
+                    <p class="auth-panel-desc">
+                        Saisissez votre nom d'utilisateur et votre mot secret pour réinitialiser votre mot de passe.
+                    </p>
+
+                    <div class="auth-field">
+                        <label for="rec-username">Nom d'utilisateur</label>
+                        <input
+                            type="text"
+                            id="rec-username"
+                            name="username"
+                            placeholder="Votre nom d'utilisateur"
+                            autocomplete="username"
+                            maxlength="20"
+                            required
+                        >
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="rec-secret">Mot secret</label>
+                        <input
+                            type="text"
+                            id="rec-secret"
+                            name="secret"
+                            placeholder="Votre mot secret de récupération"
+                            autocomplete="off"
+                            maxlength="200"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="auth-btn-submit" id="btn-recover">
+                        Vérifier
+                    </button>
+                </form>
+
+                <!-- Étape 2 : Nouveau mot de passe (masqué jusqu'à validation) -->
+                <form id="form-reset" novalidate style="display:none;">
+                    <p class="auth-panel-desc auth-panel-desc--success">
+                        ✅ Vérification réussie. Choisissez un nouveau mot de passe.
+                    </p>
+
+                    <div class="auth-field">
+                        <label for="reset-password">Nouveau mot de passe</label>
+                        <div class="auth-input-group">
+                            <input
+                                type="password"
+                                id="reset-password"
+                                name="newPassword"
+                                placeholder="12 caractères minimum"
+                                autocomplete="new-password"
+                                required
+                            >
+                            <button type="button" class="btn-toggle-pw" data-target="reset-password" title="Afficher/masquer" aria-label="Afficher le mot de passe">
+                                👁️
+                            </button>
+                        </div>
+                        <div class="strength-bar" id="reset-strength-bar">
+                            <div class="strength-fill" id="reset-strength-fill"></div>
+                        </div>
+                        <span class="strength-label" id="reset-strength-label"></span>
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="reset-confirm">Confirmer le nouveau mot de passe</label>
+                        <div class="auth-input-group">
+                            <input
+                                type="password"
+                                id="reset-confirm"
+                                name="confirmPassword"
+                                placeholder="Répétez le nouveau mot de passe"
+                                autocomplete="new-password"
+                                required
+                            >
+                            <button type="button" class="btn-toggle-pw" data-target="reset-confirm" title="Afficher/masquer" aria-label="Afficher la confirmation">
+                                👁️
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Token caché -->
+                    <input type="hidden" id="reset-token" name="token">
+
+                    <button type="submit" class="auth-btn-submit" id="btn-reset">
+                        Changer le mot de passe
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
